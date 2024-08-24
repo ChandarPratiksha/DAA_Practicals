@@ -1,18 +1,18 @@
 #include <iostream>
 using namespace std;
 
-// Function to count the number of trailing zeroes in the factorial of num
-int countTrailingZeroes(int num) {
-    int count = 0;
+// Function to cnt the number of trailing zeroes in the factorial of num
+int cntTrailingZeroes(int num) {
+    int cnt = 0;
     while(num >= 5) {
         num /= 5;
-        count += num;
+        cnt += num;
     }
-    return count;
+    return cnt;
 }
 
 // Function to find the smallest number whose factorial contains at least n trailing zeroes
-int findMinFact(int n) {
+int get_min_fact(int n) {
     if (n == 0) return 0; // Special case, 0! = 1, which has no trailing zero
 
     int low = 0;
@@ -20,7 +20,7 @@ int findMinFact(int n) {
 
     while (low < high) {
         int mid = (low + high) / 2;
-        if (countTrailingZeroes(mid) < n) {
+        if (cntTrailingZeroes(mid) < n) {
             low = mid + 1;
         } else {
             high = mid;
@@ -34,7 +34,7 @@ int main() {
     cout << "Enter the number of trailing zeroes required: ";
     cin >> n;
 
-    int result = findMinFact(n);
+    int result = get_min_fact(n);
     cout << "The smallest number whose factorial has at least " << n << " trailing zeroes is: " << result << endl;
 
     return 0;
