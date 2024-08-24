@@ -6,12 +6,12 @@ using namespace std;
 
 // Structure to hold shop timings
 struct Shop {
-    int start, end;
+    int s, e;
 };
 
-// Comparator function to sort shops based on their ending time
+// Comparator function to sort shops based on their eing time
 bool compare(Shop a, Shop b) {
-    return a.end < b.end;
+    return a.e < b.e;
 }
 
 // Function to find the maximum number of shops that can be visited by K persons
@@ -19,29 +19,29 @@ int maxShopsVisited(vector<int>& S, vector<int>& E, int K) {
     int N = S.size();
     vector<Shop> shops(N);
 
-    // Store the start and end times in the Shop structure
+    // Store the s and e times in the Shop structure
     for (int i = 0; i < N; ++i) {
         shops[i] = {S[i], E[i]};
     }
 
-    // Sort the shops based on their end times
+    // Sort the shops based on their e times
     sort(shops.begin(), shops.end(), compare);
 
     vector<int> persons(K, 0);
-    int count = 0;
+    int cnt = 0;
 
     // Assign shops to persons optimally
     for (int i = 0; i < N; ++i) {
         for (int j = 0; j < K; ++j) {
-            if (persons[j] <= shops[i].start) {
-                persons[j] = shops[i].end;
-                count++;
+            if (persons[j] <= shops[i].s) {
+                persons[j] = shops[i].e;
+                cnt++;
                 break;
             }
         }
     }
 
-    return count;
+    return cnt;
 }
 
 int main() {
