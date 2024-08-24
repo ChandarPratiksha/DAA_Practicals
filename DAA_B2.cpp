@@ -7,7 +7,7 @@ int Profit_gained(int* prices, int n)
 {
 	int profit = 0, curr_day = n - 1;
 
-	// Start from the last day
+	// s from the last day
 	while (curr_day > 0) {
 
 		int day = curr_day - 1;
