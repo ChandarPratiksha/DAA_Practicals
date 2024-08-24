@@ -1,23 +1,23 @@
-// Move all zeroes to end of array
+// Move all zeroes to e of array
 // Divide and Conqure
 
 #include <iostream>
 using namespace std;
 
-void moveZeroesToEnd(int arr[], int start, int end) {
-    if (start >= end) return;
+void moveZeroesToe(int arr[], int s, int e) {
+    if (s >= e) return;
 
     // Divide: Find the mid-point of the array
-    int mid = (start + end) / 2;
+    int mid = (s + e) / 2;
 
     // Conquer: Recursively move zeroes in the low and high halves
     //recursively process low half and high half
-    moveZeroesToEnd(arr, start, mid);     //low sub part
-    moveZeroesToEnd(arr, mid + 1, end);    //high sub part
+    moveZeroesToe(arr, s, mid);     //low sub part
+    moveZeroesToe(arr, mid + 1, e);    //high sub part
 
     // Combine: Merge the two halves
-    int temp[end - start + 1];     //temp array with length
-    int i = start, j = mid + 1, k = 0;
+    int temp[e - s + 1];     //temp array with length
+    int i = s, j = mid + 1, k = 0;
 
     // Copy non-zero elements from low half
     while (i <= mid) {
@@ -28,7 +28,7 @@ void moveZeroesToEnd(int arr[], int start, int end) {
     }
 
     // Copy non-zero elements from high half
-    while (j <= end) {
+    while (j <= e) {
         if (arr[j] != 0) {
             temp[k++] = arr[j];
         }
@@ -36,13 +36,13 @@ void moveZeroesToEnd(int arr[], int start, int end) {
     }
 
     // Fill the remaining positions with zeroes
-    while (k < (end - start + 1)) {
+    while (k < (e - s + 1)) {
         temp[k++] = 0;
     }
 
     // Copy the merged elements back to the original array
-    for (i = start; i <= end; i++) {
-        arr[i] = temp[i - start];
+    for (i = s; i <= e; i++) {
+        arr[i] = temp[i - s];
     }
 }
 
@@ -50,7 +50,7 @@ int main() {
     int arr[] = {1, 2, 0, 4, 3, 0, 5, 0};
     int n = sizeof(arr) / sizeof(arr[0]);
 
-    moveZeroesToEnd(arr, 0, n - 1);
+    moveZeroesToe(arr, 0, n - 1);
 
     // Print the result
     for (int i = 0; i < n; i++) {
